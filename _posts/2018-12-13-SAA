@@ -1,1 +1,168 @@
+---
+layout: post
+title: SAA Report
+date: 2017-12-16 20:02:00
+tags: 
+author: Eunseo Kim
+---
+
+EV3 Mindstorm을 이용한 반려동물 급식기만들기 프로젝트
+
+### Prototype
+
+첫 구상
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/Prototype.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+물공급기 구상
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/PrototypeWater.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/PrototypeWater2.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+
+### Making
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/making1.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/making2.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+
+### ddd
+
+## Food Supplier
+
+
+<amp-youtube width="480"
+  height="270"
+  layout="responsive"
+  data-videoid="J7-7JCE1QAQ">
+</amp-youtube>
+
+<hr />
+
+<amp-youtube width="480"
+  height="270"
+  layout="responsive"
+  data-videoid="0plF8n5eeMw">
+</amp-youtube>
+
+<hr />
+
+
+## Water Supplier
+
+초기모습
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/WaterFirst.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+완성된 모습
+
+<hr />
+
+<amp-img src="{{ site.baseurl }}assets/images/SAA media/WaterFinal.jpeg" width="691" height="435" layout="responsive" alt="" class="mb3"></amp-img>
+
+영상
+
+<amp-youtube width="480"
+  height="270"
+  layout="responsive"
+  data-videoid="r0fZkT284IM">
+</amp-youtube>
+
+<hr />
+
+### Code
+
+```c
+//code by ROBOTC
+
+#pragma config(Sensor, S3,ts, sensorEV3_Touch)
+#pragma config(Motor,  motorB, wm, tmotorEV3_Large, PIDControl, encoder)
+#pragma config(Motor,  motorC, fm, tmotorEV3_Large, PIDControl, encoder)
+
+int n = 0;
+
+void water(){    //water motor control
+
+		sleep(1);
+		setMotorSpeed(wm, 30);
+		sleep(500);
+		setMotorSpeed(wm, 0);   
+		sleep(2000);
+		setMotorSpeed(wm, -30);
+		sleep(500);
+		setMotorSpeed(wm, 0);
+}
+
+void food(){     //food motor control
+    
+		setMotorSpeed(fm,-15);
+		sleep(2000);
+		setMotorSpeed(fm, 0);
+		sleep(4000);
+		setMotorSpeed(fm,15);
+		sleep(1000);
+
+}
+
+task main()
+{
+	while(1){
+		while(getTouchValue(ts) == 0){
+			sleep(500);
+			displayBigTextLine(2,"n = %d",n);
+			n++;
+			if(n == 10){
+				food();
+				water();
+				n = 0;
+			}
+		}
+		while(getTouchValue(ts) == 1){
+			water();
+		}
+	}
+}
+```
+
+### Final Present
+
+설명영상
+
+<amp-youtube width="480"
+  height="270"
+  layout="responsive"
+  data-videoid="KB6WvU1vwwQ">
+</amp-youtube>
+
+<hr />
+
+발표영상
+
+<amp-youtube width="480"
+  height="270"
+  layout="responsive"
+  data-videoid="8rUC18QhV14">
+</amp-youtube>
+
+<hr />
+
+
+
+
+
+
 
